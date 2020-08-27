@@ -21,27 +21,31 @@ function App() {
 
   function handleClick(event) {
     setHeadingText(name);
+    //this allows to prevent the default functon fo the form
+    event.preventDefault();
   }
 
   return (
     <div className="container">
       <h1>Hello {headingText}</h1>
-      <input
-        onChange={handleChange}
-        type="text"
-        placeholder="What's your name?"
-        //in react the value should be set from the event target
-        //in react it is called Controlled Components
-        value={name}
-      />
-      <button
-        style={{ backgroundColor: isMouseOver ? "black" : "white" }}
-        onClick={handleClick}
-        onMouseOver={handleMouseOver}
-        onMouseOut={handleMouseOut}
-      >
-        Submit
-      </button>
+      {/* form default value refresh the page when button is clicked */}
+      <form onSubmit={handleClick}>
+        <input
+          onChange={handleChange}
+          type="text"
+          placeholder="What's your name?"
+          //in react the value should be set from the event target
+          //in react it is called Controlled Components
+          value={name}
+        />
+        <button
+          style={{ backgroundColor: isMouseOver ? "black" : "white" }}
+          onMouseOver={handleMouseOver}
+          onMouseOut={handleMouseOut}
+        >
+          Submit
+        </button>
+      </form>
     </div>
   );
 }
